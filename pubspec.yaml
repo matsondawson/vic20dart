@@ -1,0 +1,8 @@
+name: vic20dart
+version: 0.1.0
+author: matsondawson@gmail.com
+description: Vic20 emulator written in Dart
+homepage: http://mdawson.net/
+dependencies:
+  browser: any
+  js: any
