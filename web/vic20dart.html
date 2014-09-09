@@ -10,11 +10,11 @@
     <link rel="stylesheet" type="text/css" media="all" href="jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css"/>
     <link rel="stylesheet" type="text/css" media="all" href="jquery/css/superfish.css"/>
     
-    <script language="JavaScript" type="text/javascript" src="jquery/js/jquery-1.8.1.js"></script>
-    <script language="JavaScript" type="text/javascript" src="jquery/js/jquery-ui-1.8.23.custom.min.js"></script>
-    <script language="JavaScript" type="text/javascript" src="jquery/js/superfish.js"></script>
-    <script language="JavaScript" type="text/javascript" src="jquery/js/supersubs.js"></script>  
-    <script language="JavaScript" type="text/javascript" src="js/analytics.js"></script>
+    <script type="text/javascript" src="jquery/js/jquery-1.8.1.js"></script>
+    <script type="text/javascript" src="jquery/js/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="jquery/js/superfish.js"></script>
+    <script type="text/javascript" src="jquery/js/supersubs.js"></script>  
+    <script type="text/javascript" src="js/analytics.js"></script>
   </head>
   
   <body>
@@ -206,7 +206,8 @@
     This is a Dart conversion of my <a href="http://www.mdawson.net/vic20chrome/vic20.php">Javscript based Vic20</a>.<br/>
     It runs about 2x faster than the original Javascript version due to the use of SIMD in Dart!
  
-    Copyright matsondawson@gmail.com 2013
+    Copyright matsondawson@gmail.com 2013<br/>
+    FrameTime: <span id="frameTime">?</span>
     </div>
     
     <div id="tapeZoom" style="position:absolute;left:10px;top:400px;display:none">
@@ -265,9 +266,9 @@
       if (e.stopPropagation) e.stopPropagation();
     }
 
-    window.onhelp       = function() {return false;}
-    document.onhelp     = function() {return false;}
-    document.onkeypress = function() {return false;}
+    window.onhelp       = void(0);
+    document.onhelp     = void(0);
+    document.onkeypress = void(0);
     document.onkeydown  = akd;
     document.onkeyup    = aku;
     </script>

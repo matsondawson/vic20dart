@@ -269,10 +269,15 @@ class Vic20 extends IeeeDevice {
     stop = true;
   }
   
+  var oneFrameTimeSum = 0;
+  var timeloop = 100;
+  var sw = new Stopwatch();
+  Element frameTimeEl = querySelector("#frameTime");
   void oneFrame() {
     int startFrameTime = new DateTime.now().millisecondsSinceEpoch;
     
     if (!stop) {
+      sw..reset()..start();
       for(int i=machineDefinition.cyclesPerFrame(); i!=0; i--) {
         _via1.cycleUp();
         _via2.cycleUp();
@@ -280,6 +285,13 @@ class Vic20 extends IeeeDevice {
         _via1.cycleDown();
         _via2.cycleDown();
         _vic.cycle();
+      }
+      oneFrameTimeSum += sw.elapsedMicroseconds;
+      sw.stop();
+      if (timeloop--==0) {
+        frameTimeEl.innerHtml = "${oneFrameTimeSum/100000} ms";
+        oneFrameTimeSum = 0;
+        timeloop = 100;
       }
     }
     
