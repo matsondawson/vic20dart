@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Vic20-Dart</title>
+    <link rel="stylesheet" href="vic20dart.css"/>
+    
+    <link rel="stylesheet" type="text/css" media="all" href="jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="jquery/css/superfish.css"/>
+    
+    <script type="text/javascript" src="jquery/js/jquery-1.8.1.js"></script>
+    <script type="text/javascript" src="jquery/js/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="jquery/js/superfish.js"></script>
+    <script type="text/javascript" src="jquery/js/supersubs.js"></script>  
+    <script type="text/javascript" src="js/analytics.js"></script>
+  </head>
+  
+  <body>
+     
+  <ul class="sf-menu">
+    <li><a><img src="images/icon.png" style="height:10px;"/>Vic20-dart</a>
+      <ul>
+        <li><a href="javascript:$('#aboutHelp').dialog()">About...</a></li>
+      </ul>
+    </li>
+    
+    <li><a>Mode</a>
+      <ul>
+        <!--<li><label for="radPlayground"><a>Playground</a></label></li>
+        <li><label for="radCodify"><a>Codify</a></label></li>
+        <li><label for="radDebug"><a>Debug</a></label></li>
+        <li style="font-size:1px"><hr/></li>-->
+        <li><a onclick="toggleFullscreen()">Fullscreen</a></li>
+      </ul>
+    </li>
+    
+    <li><a>Control</a>
+      <ul>
+        <li><a id="menuItem_softReset">Soft Reset</a></li>
+        <li><a id="menuItem_hardReset">Hard Reset</a></li>
+        <li style="font-size:1px"><hr/></li>
+        <li><a><label><input type="checkbox" class="joykeysinput"/>Joykeys Enabled?</label></a></li>
+        <li><a href="javascript:$('#joykeysHelp').dialog()">Configure Joy Keys</a></li>
+      </ul>
+    </li>
+
+    <li><a>Configure</a>
+      <ul>
+        <!--<li><a>Memory</a>
+          <ul>
+            <li><a><input type="checkbox" id="mem0400opt" onclick="{Config.memoryAt0400=!Config.memoryAt0400;vic20.updateMemoryModules();updateMenuState();}"/><label for="mem0400opt"><b>3KB @ $0400</b></label></a></li>
+            <li><a><input type="checkbox" id="mem2000opt" onclick="{Config.memoryAt2000=!Config.memoryAt2000;vic20.updateMemoryModules();updateMenuState();}"/><label for="mem2000opt"><b>8KB @ $2000</b></label></a></li>
+            <li><a><input type="checkbox" id="mem4000opt" onclick="{Config.memoryAt4000=!Config.memoryAt4000;vic20.updateMemoryModules();updateMenuState();}"/><label for="mem4000opt"><b>8KB @ $4000</b></label></a></li>
+            <li><a><input type="checkbox" id="mem6000opt" onclick="{Config.memoryAt6000=!Config.memoryAt6000;vic20.updateMemoryModules();updateMenuState();}"/><label for="mem6000opt"><b>8KB @ $6000</b></label></a></li>
+            <li><a><input type="checkbox" id="memA000opt" onclick="{Config.memoryAtA000=!Config.memoryAtA000;vic20.updateMemoryModules();updateMenuState();}"/><label for="memA000opt"><b>8KB @ $A000</b></label></a></li>
+          </ul>
+        </li>-->
+        <li><a>Model</a>
+          <ul>
+            <li><a><label><input type="checkbox" class="machineDefinitionOption" data-machineDefinition="usa"  />NTSC (USA)          </label></a></li>
+            <li><a><label><input type="checkbox" class="machineDefinitionOption" data-machineDefinition="japan"/>NTSC (JAPAN)        </label></a></li>
+            <li><a><label><input type="checkbox" class="machineDefinitionOption" data-machineDefinition="world"/>PAL (World)         </label></a></li>
+            <li><a><label><input type="checkbox" class="machineDefinitionOption" data-machineDefinition="swedenAndFinland"/>PAL (Sweden/Finland)</label></a></li>
+          </ul>
+        </li>
+        <li><a>Speed</a>
+          <ul>
+            <li><a><label><input type="checkbox" class="speedOption" data-speed="1"/>1x      </label></a></li>
+            <li><a><label><input type="checkbox" class="speedOption" data-speed="2"/>2x      </label></a></li>
+            <li><a><label><input type="checkbox" class="speedOption" data-speed="4"/>No limit</label></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    
+    <li><a>Carts/Programs</a>
+        <ul id="programs">
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/AE-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/AE-a000.prg">AE</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Alien Blitz.prg"     >Alien Blitz</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Atlantis.NTSC.prg"   >Atlantis</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Bandits.prg"         >Bandits</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/berzerk-mmx-plus.prg">Berzerk</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Battlezone-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Battlezone-a000.prg">Battle Zone</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Buck Rogers-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Buck Rogers-a000.prg">Buck Rogers</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Centipede-2000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Centipede-a000.prg">Centipede</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Choplifter.prg"      >Choplifter</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Clowns.prg"          >Clowns</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/datapop.prg"         >Datapop Demo</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Dig Dug-2000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Dig Dug-a000.prg">Dig Dug</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Donkey Kong-2000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Donkey Kong-a000.prg">Donkey Kong</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/frogger07.prg"       >Frogger'07</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Galaxian.prg"        >Galaxian</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Gunslinger.prg"      >Gunslinger</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Jungle Hunt-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Jungle Hunt-a000.prg">Jungle Hunt</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Jupiter Lander.prg"  >Jupiter Lander</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Lode Runner-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Lode Runner-a000.prg">Lode Runner</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Moon Patrol-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Moon Patrol-a000.prg">Moon Patrol</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Mower Mania.prg"     >Mower Mania</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Ms. Pac-Man-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Ms. Pac-Man-a000.prg">Ms. Pac-Man</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Omega Race-orig.prg" >Omega Race</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Poker-2.prg"         >Poker</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Pole Position-6000.prg,http://www.mdawson.net/vic20chrome/vic20/programs/Pole Position-a000.prg">Pole Position</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Psycho Shopper.prg"  >Psycho Shopper</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/quikmanplus8k.prg"   >Quikman</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/River Rescue.prg"    >River Rescue</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/rl-16k.prg"          >Robotic Liberation</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/tetris.prg"          >Tetris</a></li>
+          <li><a data-machineDefinition="usa"   data-url="http://www.mdawson.net/vic20chrome/vic20/programs/Visible Solar System-2.prg">Visible Solar System</a></li>
+          <li><a data-machineDefinition="world" data-url="http://www.mdawson.net/vic20chrome/vic20/programs/warrior.prg"         >Warrior</a></li>  
+          </ul>
+
+    </li>
+    
+    <li><a >Reference</a>
+      <ul>
+        
+        <li><a href="http://www.mdawson.net/vic20chrome/cpu/mos_6500_mpu_preliminary_may_1976.pdf" target="CPU6502PDF">6502 Datasheet</a></li>
+        <li><a href="http://www.unusedino.de/ec64/technical/aay/c64/bmain.htm" target="_blank">6502 instruction set</a>
+        <li><a href="http://www.mdawson.net/vic20chrome/vic20/docs/kernel_disassembly.txt" target="KERNEL_DISASSEMBLY">Kernel Disassembly</a></li>
+        <li><a href="http://folkvagn.commodore64.org/Minnesmappar/1541-diss.html" target="DRIVE_1541_DISASSEMBLY">VIC-1541 Disassembly</a></li>
+        <li><a href="http://www.atarimagazines.com/compute/issue38/073_1_HOW_THE_VIC_64_SERIAL_BUS_WORKS.php" target="COMMODORE_SERIAL_BUS">Commodore Serial Bus Description</a></li>
+        
+        <li><a href="http://www.mdawson.net/vic20chrome/vic20/docs/memorymap.html" target="MEMORY_MAP">Memory Map</a></li>
+        <li><a href="http://sta.c64.org/cbm64pet.html" target="PETSCII_CODES">PETSCII Codes</a></li>
+        
+        <li><a href="http://www.mdawson.net/vic20chrome/display/mos_6560_6561_vic.pdf" target="VIC6560PDF">Vic 6560/6561 Datasheet</a></li>
+        <li><a href="http://vic-20.appspot.com/docs/6561help.txt" target="VIC6561HELP">Vic 6560/6561 Help</a></li>
+        
+        <li><a href="http://www.mdawson.net/vic20chrome/peripheral/w65c22s.pdf" target="VIA6522PDF">Via 6522 Datasheet</a></li>
+        <li><a href="http://personalpages.tds.net/~rcarlsen/cbm/vic20/vic20.txt" target="VIA6522PDF">Repair Guide</a></li>
+        <li><a href="http://www.fpgaarcade.com/resources/keyboard.txt" target="FPGAREF">FPGA arcade reference</a></li>
+        <li><a>Schematics</a>
+          <ul>
+            <li><a href="http://www.mainbyte.com/vic20/e_schematic.pdf" target="SCHEME">Revision E (NTSC)</a></li>
+            <li><a href="http://www.mainbyte.com/vic20/n_schematic.pdf" target="SCHEMN">Revision N (PAL)</a></li>
+          </ul>
+        </li>
+        <li style="font-size:1px"><hr/></li>
+        <li><a href="http://www.sleepingelephant.com/denial/" target="ZIMMERS">Denial</a></li>
+        <li><a href="http://www.mainbyte.com/vic20/" target="ZIMMERS">MainByte</a></li>
+        <li><a href="http://www.zimmers.net/anonftp/pub/cbm/vic20/" target="ZIMMERS">Zimmers</a></li>
+      </ul>
+    </li>
+  </ul>
+    
+   <br/>
+   <br/>
+   <br/>
+   
+   <div style="width:1280px">
+  
+    <h2 id="noDartMessage" style="display:none">Sorry dart2js version not currently working, please use <a href="http://www.dartlang.org/tools/dartium/">dartium</a>
+      <!--Your browser does not support Dart, you are currently using the SLOW Javascript version of this application--></h2>
+    <br/>
+    
+    <script>
+      /*if (navigator.webkitStartDart) {
+        $("#noDartMessage").hide();
+      } else {
+        $("#noDartMessage").show();
+      }*/
+    </script>
+    
+    <table style="margin-left: auto;margin-right: auto;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+      
+      <td>
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr style="overflow: hidden; height: 26px;">
+          <td colspan="3" style="overflow: hidden; height: 26px; background-image: url(images/monitor_top_s.jpg);background-size:100%;background-repeat:no-repeat;background-position:bottom;"></td>
+        </tr>
+        <tr style="background-color: black;">
+          <td style="overflow: hidden; background-image: url(images/monitor_left.jpg);"><img src="images/monitor_left.jpg" border="0"></td>
+          <td>
+            <div id="canvasfs" style="background-color:#000">
+              <canvas id="vic20screen">&#160;</canvas>
+            </div>
+          </td>
+          <td style="overflow: hidden; background-image: url(images/monitor_right.jpg);"><img src="images/monitor_right.jpg" border="0"></td>
+        </tr>
+        <tr style="overflow: hidden; height: 82px;">
+          <td colspan="3" style="overflow: hidden;background-image: url(images/monitor_bottom.jpg);background-size:100%;background-repeat:no-repeat;"></td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+      </table>
+      
+      <br/>
+
+      <div style="margin-left:112px">
+        <img id="datasettesmall" src="images/datasette.png"/>
+        <img src="images/vic20.jpg" style="padding:30px 0px 30px 0px;border:1px solid white;" border="0"/>
+        <img src="images/joystick.jpg" style="padding:30px 0px 30px 0px;border:1px solid white;"/>
+      </div>
+      
+      <div style="position:relative;left:900px;top:-70px;font-family: Verdana;font-size: 12px;">
+        <label><input type="checkbox" class="joykeysinput"/>&#160;Joykeys</label>&#160;<a onclick="$('#joykeysHelp').dialog()">?</a>
+      </div>
+    
+    <br/>
+    <br/>
+    
+    This is a Dart conversion of my <a href="http://www.mdawson.net/vic20chrome/vic20.php">Javscript based Vic20</a>.<br/>
+    It runs about 2x faster than the original Javascript version due to the use of SIMD in Dart!
+ 
+    Copyright matsondawson@gmail.com 2013<br/>
+    FrameTime: <span id="frameTime">?</span>
+    </div>
+    
+    <div id="tapeZoom" style="position:absolute;left:10px;top:400px;display:none">
+      <img id="datasette_empty"   src="images/datasette_empty.png"    usemap="#datasettemap"/>
+      <img id="datasette_stopped" src="images/datasette_stopped.png"  usemap="#datasettemap"/>
+      <img id="datasette_play"    src="images/datasette_play.png"     usemap="#datasettemap"/>
+      
+      <map id="datasettemap" name="datasettemap">
+        <area shape="rect" alt="stop"   title="Stop"   coords="166,303,198,366" href="javascript:stopTape()"/>
+        <area shape="rect" alt="insert" title="Insert" coords="29,111,225,236"  href="javascript:loadTapeCustom()"  />
+        <area shape="rect" alt="play"   title="Play"   coords="130,303,165,367" href="javascript:playTape()"  />
+        <!-- area shape="rect" alt="ffwd" title="Fast Forward" coords="98,304,130,363" href=""  / -->
+        <!-- area shape="rect" alt="rwnd" title="Rewind" coords="65,305,97,365" href=""  / -->
+        <!-- area shape="rect" alt="reset" title="Reset Counter" coords="107,74,129,96" href=""  / -->
+        <!-- area shape="rect" alt="counter" title="View Counter" coords="74,73,104,93" href=""  / -->
+        <!-- area shape="rect" alt="record" title="Record" coords="29,304,63,364" href=""  / -->
+      </map>
+    </div>
+    
+    
+    <div id="aboutHelp" style="display:none" title="About">
+      Vic-20 Dart, by Matt Dawson<br/>
+      Email: <a href="mailto:matsondawson@gmail.com?subject=Vic-20 Dart Query" target="_blank">matsondawson@gmail.com</a><br/>
+      Copyright (c) 2013
+    </div>
+    
+    <div id="joykeysHelp" style="display:none" title="Joy Keys configuration (WIP)">
+    Joy Keys are the arrow keys and tilde(~)
+    </div>
+        
+    
+    <script type="application/dart" src="vic20dart.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+
+
+    <script>
+    function loadPrgJs(bins) {
+    }
+    
+    // Dart key handlers are buggered atm, so using javascript ones
+    function aku(event) {
+      cancelKeyEvent(event);
+      if (typeof applyKey!="undefined") applyKey(event.keyCode,true);
+    }
+    function akd(event) {
+      cancelKeyEvent(event);
+      if (typeof applyKey!="undefined") applyKey(event.keyCode,false);
+    }
+    function cancelKeyEvent(e) {
+      if (window.event) {
+        try { window.event.keyCode = 0; } catch (e) { }
+        window.event.returnValue = false;
+        window.event.cancelBubble = true;
+      }
+      if (e.preventDefault) e.preventDefault();
+      if (e.stopPropagation) e.stopPropagation();
+    }
+
+    window.onhelp       = void(0);
+    document.onhelp     = void(0);
+    document.onkeypress = void(0);
+    document.onkeydown  = akd;
+    document.onkeyup    = aku;
+    </script>
+  </body>
+</html>

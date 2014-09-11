@@ -1,0 +1,151 @@
+p,body,textarea{
+  font-size:12px;
+}
+
+body {
+  padding: 0 0;
+  margin: 0 0;
+}
+
+/* block and margin required to center canvas when full screen */
+#vic20screen {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  height:100%;
+}
+
+.sf-menu input[type=checkbox] {
+  margin-left:-16px;
+  margin-right:5px;
+}
+ 
+.sf-menu a > img {
+  margin-right:1em;
+}
+  
+/* Jquery styles */
+.ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane { font-size: 12px; }
+
+/* local styles */
+#debug {
+  border-collapse:collapse;
+  font-family: monospace;
+}
+
+#debug th { 
+  text-align:left;
+  background-color:lightblue;
+  border:1px solid black;
+}
+
+#debug td {
+  padding:1px 2px;
+  border:1px solid black;
+  vertical-align:top;
+}
+
+#debug2 {
+  border-collapse:collapse;
+  font-family: monospace;
+}
+
+#debug2 th {  
+  text-align:left;
+  background-color:lightblue;
+  border:1px solid black;
+}
+
+#debug2 td {
+  padding:1px 2px;
+  border:1px solid black;
+  vertical-align:top;
+}
+
+#xxtapeZoom {
+  background-color:#ccc;
+}
+
+#datasettesmall {
+  padding:30px 0px 30px 20px;border:1px solid #ccc;background-repeat:no-repeat;background-position:right top;background-image:url(images/clickme_gray.png);
+}
+#datasettesmall:hover {
+  padding:30px 0px 30px 20px;border:1px solid #aaa;background-repeat:no-repeat;background-position:right top;background-image:url(images/clickme.png);
+}
+
+#radPlayground,#radCodify,#radDebug { position:absolute; left:-100px; top: -100px; }
+#modePlayground,#modeDebug,#modeCodify { display: none; }
+#radPlayground:checked ~ div #modePlayground, #radCodify:checked ~ div #modeCodify, #radDebug:checked ~ div #modeDebug { display: block; }
+
+
+
+* Set the size and font of the tab widget */
+.tabGroup {
+    font: 10pt arial, verdana;
+    width: 800px;
+    height: 400px;
+}
+ 
+/* Configure the radio buttons to hide off screen */
+.tabGroup > input[type="radio"] {
+    position: absolute;
+    left:-100px;
+    top:-100px;
+}
+ 
+/* Configure labels to look like tabs */
+.tabGroup > input[type="radio"] + label {
+    /* inline-block such that the label can be given dimensions */
+    display: inline-block;
+ 
+    /* A nice curved border around the tab */
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+     
+    /* the bottom border is handled by the tab content div */
+    border-bottom: 0;
+ 
+    /* Padding around tab text */
+    padding: 5px 10px;
+ 
+    /* Set the background color to default gray (non-selected tab) */
+    background-color:#ddd;
+}
+ 
+/* Focused tabs need to be highlighted as such */
+.tabGroup > input[type="radio"]:focus + label {
+    border:1px dashed black;
+}
+ 
+/* Checked tabs must be white with the bottom border removed */
+.tabGroup > input[type="radio"]:checked + label {
+    background-color:white;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+}
+ 
+/* The tab content must fill the widgets size and have a nice border */
+.tabGroup > div {
+    display: none;
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px 10px;
+    height: 100%;
+    overflow: auto;
+     
+    box-shadow: 0 0 20px #444;
+    -moz-box-shadow: 0 0 20px #444;
+    -webkit-box-shadow: 0 0 20px #444;
+     
+    border-radius: 0 5px 5px 5px;
+    -moz-border-radius: 0 5px 5px 5px;
+    -webkit-border-radius: 0 5px 5px 5px;
+}
+ 
+/* This matchs tabs displaying to thier associated radio inputs */
+.tab1:checked ~ .tab1, .tab2:checked ~ .tab2, .tab3:checked ~ .tab3, .tab4:checked ~ .tab4, .tab5:checked ~ .tab5, .tab6:checked ~ .tab6 {
+    display: block;
+}
