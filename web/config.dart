@@ -58,9 +58,30 @@ class Config {
    */
   int L;
   
+  /*
   List<int> colourPalette = const [
     0XFF000000, 0XFFFFFFFF, 0XFF001089, 0XFFCFBF46, 0XFFC61486, 0XFF05B745, 0XFFD01327, 0XFF15D2BE,
-    0XFF00469A, 0XFF0099FF, 0XFFCBC0FF, 0XF0FFFFFE, 0XFFD87093, 0XFF90EE90, 0XFFE6D8AD, 0XFFE0FFFF ];
+    0XFF00469A, 0XFF0099FF, 0XFFCBC0FF, 0XF0FFFFFE, 0XFFD87093, 0XFF90EE90, 0XFFE6D8AD, 0XFFE0FFFF ];  
+  */
+  
+  List<int> colourPalette = const [
+    0XFF000000, // color  0 - black
+    0XFEFFFFFF, // color  1 - white
+    0XFF0000F0, // color  2 - red
+    0XFEF0F000, // color  3 - cyan
+    0XFF600060, // color  4 - purple
+    0XFF00A000, // color  5 - green
+    0XFEF00000, // color  6 - blue
+    0XFF00D0D0, // color  7 - yellow
+    0XFF00A0C0, // color  8 - orange
+    0XFF00A0FF, // color  9 - light orange
+    0XFF8080F0, // color 10 - pink
+    0XFEFFFF00, // color 11 - light cyan
+    0XFEFF00FF, // color 12 - light purple
+    0XFF00FF00, // color 13 - light green
+    0XFEFFA000, // color 14 - light blue
+    0XFF00FFFF  // color 15 - light yellow 
+  ];
   
   double screenRatio = 1.67, screenScale = 1.00;
   
