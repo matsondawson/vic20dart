@@ -20,7 +20,7 @@ class AudioHook {
         _audioContext = new AudioContext();
         _audioScriptProcessorNode = _audioContext.createScriptProcessor(2048, 0, 1)
             ..connectNode(_audioContext.destination, 0, 0)
-            ..onAudioProcess.listen(localOnAudioProcess);
+            ..audioProcess.listen(localOnAudioProcess);
         
         print("Using webkit audio");
       }
