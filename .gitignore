@@ -5,6 +5,12 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 
+build/
+.settings/
+web/
+pubspec.lock
+packages/
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
