@@ -207,9 +207,7 @@ class Vic20 extends IeeeDevice {
       _writeFuncs[i>>4]=writeVia1;
       _invisibleWriteFuncs[i>>4]=invisibleWriteVia1;
     }
-    
-    updateMemoryModules();
-
+   
     // Character Map
     _writeFuncs          .fillRange(0x8000>>4, 0x9000>>4, write0);
     _invisibleWriteFuncs .fillRange(0x8000>>4, 0x9000>>4, write0);
@@ -217,7 +215,9 @@ class Vic20 extends IeeeDevice {
     // Kernel and basic Rom
     _writeFuncs          .fillRange(0xA000>>4, 0x10000>>4, write0);
     _invisibleWriteFuncs .fillRange(0xA000>>4, 0x10000>>4, write0);
-    
+
+		updateMemoryModules();
+		
     loadPrgCntr = 2;
     
     _cpu.reset();
